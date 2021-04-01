@@ -1,4 +1,5 @@
 const express = require('express');
+const { v4: uuidv4 } = require("uuid");
 
 /**
  * @param {express.Request} req
@@ -7,14 +8,15 @@ const express = require('express');
 
 const getAllTransactions = (req, res) => {
 
-    const transactions = [{
-        id: '605407f340bc9e39749e20a0',
-        name: 'Patricio'
-    },
-    {
-        id: '605407f340bc9e39749e20a1',
-        name: 'Natali'
-    }]
+    const transactions = [
+        {
+            id: uuidv4(),
+            concept: "payment",
+            amount: 2000.7,
+            date: new Date(),
+            transactionType: "icome"
+        }
+    ]
 
     res.json(transactions);
 }
@@ -26,14 +28,17 @@ const getAllTransactions = (req, res) => {
 
 const createTransaction = (req, res) => {
 
-    const { id, name } = req.body;
+    const {concept, date, transactionType} = req.body;
 
-    const user = {
-        id,
-        name
+    const transaction = {
+        id: uuidv4(),
+        concept,
+        amount,
+        date,
+        transactionType
     }
 
-    res.status(201).json(user);
+    res.status(201).json(transaction);
 }
 
 /**
@@ -46,7 +51,7 @@ const updateTransaction = (req, res) => {
     const { id } = req.params;
 
     const message = {
-        message: 'Transaction modifed!'
+        message: `Transaction ${id} modifed!`
     }
     res.json(message);
 }
@@ -61,8 +66,7 @@ const getTransactionById = (req, res) => {
     const { id } = req.params;
 
     const transaction = {
-        id: '605407f340bc9e39749e20a0',
-        name: 'Patricio'
+        
     }
 
     res.json(transaction);

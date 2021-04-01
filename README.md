@@ -26,6 +26,7 @@
 * dotenv (enviroment variables).
 * winston (logger to app´s operations ).
 * swagger-ui-express (For api documentation).
+* uuid (to generate transaction id)
 
 # Servers
 
