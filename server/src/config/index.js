@@ -23,6 +23,5 @@ module.exports = {
         user: process.env.DATABASE_USER,
         database: process.env.DATABASE_NAME,
         password: process.env.DATABASE_KEY,
-        port: process.env.DATABASE_PORT
     },
 }
