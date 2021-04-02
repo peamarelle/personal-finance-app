@@ -26,12 +26,17 @@
 * dotenv (enviroment variables).
 * winston (logger to app´s operations ).
 * swagger-ui-express (For api documentation).
-* uuid (to generate transaction id)
+* sequelize (mysql db connection).
+* cors (comunication with front end app).
 
 # Servers
 
 * http://localhost:3000/api/v1 (development).
 
+
+# Documentation
+
+* http://localhost:3000/documentation (swagger documentation)
 
 # Routes
 
@@ -39,5 +44,4 @@
 * POST /money (create money trasaction).
 * PUT /money/:id (update by id money trasaction).
 * DELETE /money/:id (delete by id money trasaction).
-* GET /documentation (api documentation).
-
+* GET /money/balance (calculate balance).

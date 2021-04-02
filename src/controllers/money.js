@@ -1,17 +1,22 @@
 const express = require('express');
-const { v4: uuidv4 } = require("uuid");
-const RepositoryTransaction = require('../repositories/transactionRepository')
-const repocitory = new RepositoryTransaction();
+const { findAll, save, update, findById, removeById, getAmounts } = require('../services/transactionServices');
+const Success = require('../handlers/successHandler');
+const balanceHandler = require('../handlers/balance');
+
 /**
  * @param {express.Request} req
  * @param {express.Response} res
  */
 
-const getAllTransactions = async (req, res) => {
+const findTransactions = async (req, res, next) => {
+    try {
+        const transactions = await findAll();
 
-    const transactions = await repocitory.findTransactions()
+        res.json(new Success(transactions));
 
-    res.json(transactions);
+    } catch (error) {
+        next(error);
+    }
 }
 
 /**
@@ -19,11 +24,15 @@ const getAllTransactions = async (req, res) => {
  * @param {express.Response} res
  */
 
-const createTransaction = async (req, res) => {
+const createTransaction = async (req, res, next) => {
+    try {
+        const transaction = await save(req.body);
 
-    const transaction = await repocitory.saveTransaction(req.body)
+        res.status(201).json(new Success(transaction));
 
-    res.status(201).json(transaction);
+    } catch (error) {
+        next(error);
+    }
 }
 
 /**
@@ -31,13 +40,17 @@ const createTransaction = async (req, res) => {
  * @param {express.Response} res
  */
 
-const updateTransaction = async (req, res) => {
+const updateTransaction = async (req, res, next) => {
+    try {
+        const { id } = req.params;
 
-    const { id } = req.params;
+        const transactionUpdated = await update(id, req.body);
 
-    const transactionUpdated = await repocitory.updateTransaction(id, req.body);
+        res.json(new Success(transactionUpdated));
 
-    res.json(transactionUpdated);
+    } catch (error) {
+        next(error);
+    }
 }
 
 /**
@@ -45,37 +58,54 @@ const updateTransaction = async (req, res) => {
  * @param {express.Response} res
  */
 
-const getTransactionById = (req, res) => {
+const getTransactionById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
 
-    const { id } = req.params;
+        const transaction = await findById(id);
 
-    const transaction = {
-        
+        res.json(new Success(transaction));
+    } catch (error) {
+        next(error);
+    }
+}
+
+/**
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+
+const deleteTransaction = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        await removeById(id);
+
+        res.json(new Success({
+            message: `Transaction with ${id} deleted`
+        }));
+
+    } catch (error) {
+        next(error);
     }
 
-    res.json(transaction);
 }
 
-/**
- * @param {express.Request} req
- * @param {express.Response} res
- */
-
-const deleteTransaction = (req, res) => {
-
-    const { id } = req.params;
-
-    const message = {
-        message: `User ${id} deleted!`
+const getBalance = async (req, res, next) => {
+    try {
+        const amounts = await getAmounts();
+        const balance = balanceHandler(amounts);
+        res.json(new Success(balance));
+    } catch (error) {
+        next(error);
     }
-
-    res.json(message);
 }
 
 module.exports = {
-    getAllTransactions,
+    findTransactions,
     createTransaction,
     updateTransaction,
     getTransactionById,
-    deleteTransaction
+    deleteTransaction,
+    getBalance,
 }

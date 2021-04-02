@@ -1,22 +1,25 @@
 const {Router} = require('express');
 const {
-    getAllTransactions, 
+    findTransactions, 
     createTransaction, 
     updateTransaction, 
     getTransactionById, 
-    deleteTransaction
+    deleteTransaction,
+    getBalance,
 } = require('../controllers/money');
 
 const router = Router();
 
-router.get('/', getAllTransactions)
+router.get('/', findTransactions)
+
+router.get('/balance/', getBalance)
 
 router.post('/', createTransaction)
 
 router.put('/:id', updateTransaction)
 
-router.get('/:id', getTransactionById)
-
 router.delete('/:id', deleteTransaction)
+
+router.get('/:id', getTransactionById)
 
 module.exports = router;

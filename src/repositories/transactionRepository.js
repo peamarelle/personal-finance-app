@@ -25,6 +25,14 @@ class TransactionRepository {
 
         return transact;
     }
+
+    async findByID(id) {
+        return await Transaction.findByPk(id);
+    }
+
+    async remove(id) {
+        return await Transaction.destroy({where: {id}});
+    }
     
 }
 

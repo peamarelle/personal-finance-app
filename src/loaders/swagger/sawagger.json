@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Rest base repo",
+    "title": "Personal finance app",
     "description": "This is a api base to start new projects",
     "contact": {
       "email": "peamarelle@gmail.com"
@@ -139,14 +139,14 @@
           "concept",
           "amount",
           "date",
-          "transactionType"
+          "type"
         ],
         "type": "object",
         "properties": {
           "id": {
-            "type": "UUID",
-            "format": "String",
-            "example": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
+            "type": "Integer",
+            "format": "Number",
+            "example": 1
           },
           "concept": {
             "type": "String",
@@ -158,11 +158,11 @@
           },
           "date": {
             "type": "Date",
-            "example": "Thu Apr 01 2021 13:16:00"
+            "example": "2021-04-02"
           },
-          "transactionType": {
+          "type": {
             "type": "String",
-            "example": "icome"
+            "example": "expense"
           }
         }
       }

@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "f7ebf575-b745-455f-a4c4-081952697851",
+		"name": "Transactions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n            \"concept\": \"meat\",\r\n            \"type\": \"expense\",\r\n            \"amount\": 1500.33,\r\n            \"date\": \"2021-03-22\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basepath}}/money",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"money"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basepath}}/money/balance",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"money",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basepath}}/money",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"money"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update transaction",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"concept\": \"gym\",\r\n    \"amount\": 2500.33,\r\n    \"date\": \"2021-03-22\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basepath}}/money/:id",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"money",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "13"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete transaction",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{basepath}}/money/:id",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"money",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "13"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
