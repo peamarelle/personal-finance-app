@@ -1,22 +1,15 @@
 const express = require('express');
 const { v4: uuidv4 } = require("uuid");
-
+const RepositoryTransaction = require('../repositories/transactionRepository')
+const repocitory = new RepositoryTransaction();
 /**
  * @param {express.Request} req
  * @param {express.Response} res
  */
 
-const getAllTransactions = (req, res) => {
+const getAllTransactions = async (req, res) => {
 
-    const transactions = [
-        {
-            id: uuidv4(),
-            concept: "payment",
-            amount: 2000.7,
-            date: new Date(),
-            transactionType: "icome"
-        }
-    ]
+    const transactions = await repocitory.findTransactions()
 
     res.json(transactions);
 }
@@ -26,17 +19,9 @@ const getAllTransactions = (req, res) => {
  * @param {express.Response} res
  */
 
-const createTransaction = (req, res) => {
+const createTransaction = async (req, res) => {
 
-    const {concept, date, transactionType} = req.body;
-
-    const transaction = {
-        id: uuidv4(),
-        concept,
-        amount,
-        date,
-        transactionType
-    }
+    const transaction = await repocitory.saveTransaction(req.body)
 
     res.status(201).json(transaction);
 }
@@ -46,14 +31,13 @@ const createTransaction = (req, res) => {
  * @param {express.Response} res
  */
 
-const updateTransaction = (req, res) => {
+const updateTransaction = async (req, res) => {
 
     const { id } = req.params;
 
-    const message = {
-        message: `Transaction ${id} modifed!`
-    }
-    res.json(message);
+    const transactionUpdated = await repocitory.updateTransaction(id, req.body);
+
+    res.json(transactionUpdated);
 }
 
 /**

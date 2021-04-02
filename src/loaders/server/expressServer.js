@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const swaggerUi = require('swagger-ui-express')
 const config = require('../../config');
@@ -19,6 +20,7 @@ class ExpressServer {
 
     _middlewares() {
         this.app.use(express.json());
+        this.app.use(cors());
         this.app.use(morgan('tiny'));
     }
 
