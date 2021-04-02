@@ -1,8 +1,8 @@
-# personals-finances-app
+# personal-finance-app
 
 # HOW TO INSTALL DEPENDENCES
 
-* Clone the repository git clone https://github.com/peamarelle/personals-finances-app.git
+* Clone the repository git clone https://github.com/peamarelle/personal-finance-app.git
 
 * go to directory cd personals-finances-app
 
