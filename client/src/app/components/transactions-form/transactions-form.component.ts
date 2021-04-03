@@ -2,6 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { Transaction } from 'src/app/models/Transactions';
 import { TransactionsService } from 'src/app/services/transactions.service';
 
+
 @Component({
   selector: 'app-transactions-form',
   templateUrl: './transactions-form.component.html',
@@ -25,7 +26,12 @@ export class TransactionsFormComponent implements OnInit {
   }
 
   saveNewTransaction() {
-    console.log(this.transaction);
+    this.transactionService.saveTransaction(this.transaction).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.error(err)
+    )
   }
 
 }

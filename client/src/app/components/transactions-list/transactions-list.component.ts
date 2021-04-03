@@ -8,25 +8,40 @@ import { TransactionsService } from '../../services/transactions.service';
 })
 export class TransactionsListComponent implements OnInit {
 
+
   transactions: any = {data: []};
   balance: any = {data: 0};
 
   constructor(private transactionsService: TransactionsService) { }
 
   ngOnInit() {
+    this.getTransactions()
+  }
 
+  getTransactions() {
     this.transactionsService.getTransactions().subscribe(
       res => {
         this.transactions = res
-        this.transactionsService.getBallance().subscribe(
-          res => {
-            console.log(res);
-            this.balance = res;
-          }
-        )
+        this.getBalance()
       },
       err => console.error(err)
 
+    )
+  }
+
+  getBalance() {
+    this.transactionsService.getBallance().subscribe(
+      res => {
+        this.balance = res;
+      },
+      err => console.error(err)
+    )
+  }
+  
+  removeTransaction(id: number) {
+    this.transactionsService.deleteTransaction(id).subscribe(
+      res => this.getTransactions(),
+      err => console.error(err)
     )
   }
 
