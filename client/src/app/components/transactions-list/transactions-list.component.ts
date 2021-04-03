@@ -8,7 +8,8 @@ import { TransactionsService } from '../../services/transactions.service';
 })
 export class TransactionsListComponent implements OnInit {
 
-  transactions: any = [];
+  transactions: any = {data: []};
+  balance: any = {data: 0};
 
   constructor(private transactionsService: TransactionsService) { }
 
@@ -17,6 +18,12 @@ export class TransactionsListComponent implements OnInit {
     this.transactionsService.getTransactions().subscribe(
       res => {
         this.transactions = res
+        this.transactionsService.getBallance().subscribe(
+          res => {
+            console.log(res);
+            this.balance = res;
+          }
+        )
       },
       err => console.error(err)
 

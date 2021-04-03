@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TransactionsListComponent } from './components/transactions-list/transactions-list.component'
+import { TransactionsFormComponent } from './components/transactions-form/transactions-form.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'transactions',
     component: TransactionsListComponent
+  },
+  {
+    path: 'transaction/add',
+    component: TransactionsFormComponent
   }
 ];
 

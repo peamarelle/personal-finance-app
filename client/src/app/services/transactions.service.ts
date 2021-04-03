@@ -31,4 +31,8 @@ export class TransactionsService {
     return this.http.post(`${this.API_URI}/money`, transaction);
   }
 
+  getBallance() {
+    return this.http.get(`${this.API_URI}/money/balance`);
+  }
+
 }

@@ -1,7 +1,29 @@
+<div class="col-md-4 offset-md-4">
+    <div class="card bg-info text-center" style="max-width: 18rem;">
+        <div class="card-header text-white">BALANCE</div>
+            <div class="card-body text-white">
+                <h5 class="card-title">{{ balance.data }}</h5>
+            </div>
+    </div>
+</div>
+<br/>
+
 <div class="col-md-4"  *ngFor="let transaction of transactions.data">
     <div class="card text-center">
-        <div class="card-header">
-            {{transaction.amount}}
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            {{transaction.type}}
+            <button href="" class="btn btn-danger">
+            <i class="far fa-trash-alt"></i>
+            </button>
+        </div>
+        <div class="card-body">
+            Value: $ {{transaction.amount}}
+            <br/>
+            Type: {{transaction.concept}}
+            
+            <a href="" class="btn btn-info btn-block">
+            Edit Transaction
+            </a>
         </div>
     </div>
 </div>
