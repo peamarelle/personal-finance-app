@@ -4,11 +4,29 @@
 
 * Clone the repository git clone https://github.com/peamarelle/personal-finance-app.git
 
-* go to directory cd personals-finances-app
+* go to directory cd personals-finances-app/server
 
 * Run command npm install
 
-* Generate .env file.
+* Generate .env file
+
+```
+PORT = 3000
+
+NODE_ENV = development
+
+LOG_LEVEL = Diferents logs levels:
+
+silly | info | error
+
+DATABASE_HOST = localhost
+
+DATABASE_USER = user_example
+
+DATABASE_NAME = db_example
+
+DATABASE_KEY = key_example
+```
 
 # Scripts
 
