@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/app/models/Transactions';
 import { TransactionsService } from 'src/app/services/transactions.service';
 
@@ -20,18 +21,44 @@ export class TransactionsFormComponent implements OnInit {
     date: new Date()
   };
 
-  constructor(private transactionService: TransactionsService ) { }
+  edit: boolean = false;
+
+  constructor(private transactionService: TransactionsService, private router: Router, private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
+
+    const params = this.activatedRoute.snapshot.params;
+    if(params.id) {
+      this.transactionService.getTransaction(params.id).subscribe(
+        res => {
+          console.log(res);
+          this.transaction = res['data'];
+          this.edit = true;
+      },
+        err => console.error(err)
+      )
+    }
   }
 
   saveNewTransaction() {
     this.transactionService.saveTransaction(this.transaction).subscribe(
       res => {
-        console.log(res);
+        console.log(res)
+        this.router.navigate(['/transactions'])
       },
       err => console.error(err)
     )
+  }
+
+  updateTransaction() {
+    this.transactionService.updateTransaction(this.transaction.id, this.transaction).subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/transactions']);
+      },
+      err => console.error(err)
+    )
+
   }
 
 }

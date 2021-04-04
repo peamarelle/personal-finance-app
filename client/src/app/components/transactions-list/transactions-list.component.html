@@ -13,7 +13,7 @@
     <div class="card text-center">
         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
             {{transaction.type}}
-            <button href="" class="btn btn-danger" (click)="removeTransaction(transaction.id)">
+            <button class="btn btn-danger" (click)="removeTransaction(transaction.id)">
             <i class="far fa-trash-alt"></i>
             </button>
         </div>
@@ -22,7 +22,7 @@
             <br/>
             Type: {{transaction.concept}}
             
-            <a href="" class="btn btn-info btn-block">
+            <a [routerLink]="['/transaction/edit', transaction.id]" class="btn btn-info btn-block">
             Edit Transaction
             </a>
         </div>

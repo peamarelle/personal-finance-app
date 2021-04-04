@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <input type="date" name="date" [(ngModel)]="transaction.date" placeholder="Date" class="form-control" autofocus>
                 </div>
-                <button class="btn btn-success btn-block" (click)="saveNewTransaction()">
+                <button class="btn btn-success btn-block" (click)="edit ? updateTransaction() : saveNewTransaction()">
                     SAVE
                 </button>
             </form>

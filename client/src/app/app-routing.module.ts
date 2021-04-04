@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'transaction/add',
     component: TransactionsFormComponent
+  },
+  {
+    path: 'transaction/edit/:id',
+    component: TransactionsFormComponent
   }
 ];
 

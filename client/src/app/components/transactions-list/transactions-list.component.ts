@@ -37,7 +37,7 @@ export class TransactionsListComponent implements OnInit {
       err => console.error(err)
     )
   }
-  
+
   removeTransaction(id: number) {
     this.transactionsService.deleteTransaction(id).subscribe(
       res => this.getTransactions(),
